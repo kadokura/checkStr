@@ -1,19 +1,24 @@
 $(function(){
-  console.log("実行された");
   
-  var str = "//ex-chaos."; //検索する文字列
+  var str = "//ex-chaos.appspot.com/api/download"; //検索する文字列
+  console.log(str + "存在確認実行");
 
   // strの文字列を検索、あったらアラートだす。
   function check_str(){
     
     var bodytext = "";
-    bodytext = $(".article-detail").html();
-    //console.log(bodytext);
+
+    if ($(".main-content")[0]) { //記事
+      bodytext = $(".main-content").html();
+    } else { //CMS記事編集
+      bodytext = $("form").html();
+    }
 
     var idxres = bodytext.indexOf(str);
   
     if(idxres != -1){
       alert(str + "という記述があります");
+      console.log(str + "という記述があります");
     }else{
       console.log(str + "という記述はありません");
     }
