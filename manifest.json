@@ -10,28 +10,23 @@
     "16": "assets/icon_16.png",
     "128": "assets/icon_128.png"
   },
+  "browser_action": {
+    "default_icon": "assets/icon_16.png",
+    "default_title": "checkUcon",
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "scripts": ["jquery-2.1.4.min.js", "background.js"],
+    "persistent": false
+  },
   "content_scripts": [
     {
       "matches": [
-      "https://www.karinodomain.com/*",
-      "https://logirl.karinodomain.com/*",
-      "https://bite.karinodomain.com/*",
-      "https://owarai.karinodomain.com/*",
-      "https://gutspose.karinodomain.com/*",
-      "https://convenist.karinodomain.com/*",
-      "https://theater.karinodomain.com/*",
-      "https://www.favclip.com/*",
-      "https://logirl.favclip.com/*",
-      "https://bite.favclip.com/*",
-      "https://owarai.favclip.com/*",
-      "https://gutspose.favclip.com/*",
-      "https://convenist.favclip.com/*",
-      "https://theater.favclip.com/*",
-      "https://admin.karinodomain.com/*/admin/article/update/*",
-      "https://admin.favclip.com/*/admin/article/update/*"
+      "https://admin.karinodomain.com/*",
+      "https://admin.favclip.com/*"
       ],
       "js": ["jquery-2.1.4.min.js", "script.js"],
-      "run_at": "document_idle"
+      "run_at": "document_end"
     }
   ]
 }
