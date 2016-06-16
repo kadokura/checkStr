@@ -1,6 +1,6 @@
 $(function(){
-//var counter = 0;
-//chrome.browserAction.setBadgeText({ text:String(counter) });
+var counter = 0;
+chrome.browserAction.setBadgeText({ text:String(counter) });
 //chrome.browserAction.setBadgeBackgroundColor({color:'#666'});
 
 //Messageでscript.jsから送られた情報をもらう
