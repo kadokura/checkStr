@@ -1,33 +1,33 @@
 $(function(){
-  
-  var str = 'src=\"/api/download/'; //検索する文字列
-  console.log("「" + str + "」存在確認実行");
+
+  var strlist = [
+                 '" /api/download/',
+                 '\b'
+                ];
+  var cnt = 0;
+  console.log("禁止文字存在確認実行");
 
   // strの文字列を検索、あったらアラートだす。
-  function check_str(){
-    
+  function check_str(e){
+
     var bodytext = "";
 
-    if ($("form")[0]) { 
-      bodytext = $("form").html();
+    if ($("textarea")[1].value) {
+      bodytext = $("textarea")[1].value;
     }
-    
+    var i = bodytext.indexOf(strlist[e]);
+    console.log(i);
+    console.log(bodytext.substring(i-10,i+10));
+
     //console.log(bodytext);
 
-    // var cnt = bodytext.indexOf(str);
-    var cnt = bodytext.split(str).length - 1;
-    // console.log(cnt);
-  
-    if(cnt !== 0){
-      // alert(str + "という記述があります");
-      // console.log(str + "という記述があります");
-      sendmessage(cnt);
-    }else{
-      // console.log(str + "という記述はありません");
-      sendmessage(cnt);
-    }
+    // bodytext.toString();
+    // console.log(bodytext.indexOf(strlist[e]));
+    cnt += bodytext.split(strlist[e]).length - 1;
+
+
   }
-  
+
 //background.jsにcounterの数字を送信する関数
 function sendmessage(counter){
   chrome.extension.sendMessage({
@@ -41,7 +41,9 @@ function sendmessage(counter){
 
   //任意の感覚で文字列の検索を繰り返す
   setInterval(function(){
-    check_str();
+    cnt = 0;
+    for(var i=0;i<strlist.length;i++)check_str(i);
+    sendmessage(cnt);
   },5000);
 
 });
